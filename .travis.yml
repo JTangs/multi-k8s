@@ -10,14 +10,14 @@ script:
   - docker run -e CI=true jtangs/react-test npm run test
 
 after_success:
-  - docker build -t jtangs/multi-client ./client
-  - docker build -t jtangs/multi-nginx ./nginx
-  - docker build -t jtangs/multi-server ./server
-  - docker build -t jtangs/multi-worker ./worker
+  - docker build -t jntango/multi-client ./client
+  - docker build -t jntango/multi-nginx ./nginx
+  - docker build -t jntango/multi-server ./server
+  - docker build -t jntango/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push jtangs/multi-client
-  - docker push jtangs/multi-nginx
-  - docker push jtangs/multi-server
-  - docker push jtangs/multi-worker
+  - docker push jntango/multi-client
+  - docker push jntango/multi-nginx
+  - docker push jntango/multi-server
+  - docker push jntango/multi-worker
