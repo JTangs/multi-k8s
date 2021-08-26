@@ -1,0 +1,23 @@
+language: generic
+sudo: rquired
+services: 
+  - docker
+
+before_install: 
+  - docker build -t jtangs/react-test -f ./client/Dockerfile.dev ./client
+
+script: 
+  - docker run jtangs/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t jtangs/multi-client ./client
+  - docker build -t jtangs/multi-nginx ./nginx
+  - docker build -t jtangs/multi-server ./server
+  - docker build -t jtangs/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push jtangs/multi-client
+  - docker push jtangs/multi-nginx
+  - docker push jtangs/multi-server
+  - docker push jtangs/multi-worker
