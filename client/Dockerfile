@@ -2,9 +2,8 @@ FROM node:alpine as builder
 WORKDIR '/app'
 COPY ./package.json ./
 RUN npm install
+RUN npm config set unsafe-perm true
 COPY . .
-RUN chown -R node /app/node_modules
-USER node
 RUN npm run build
 
 FROM nginx
