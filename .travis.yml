@@ -21,3 +21,15 @@ after_success:
   - docker push jntango/multi-nginx
   - docker push jntango/multi-server
   - docker push jntango/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-352439219008"
+  bucket_path: "docker-multi"
+  on: 
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
