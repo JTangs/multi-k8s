@@ -13,7 +13,7 @@ before_install:
   - gcloud auth activate-service-account --key-file multi-k8s-326703-fcaa37bd09c4.json
   - gcloud config set project multi-k8s-326703
   - gcloud config set compute/zone asia-southeast1-a
-  - glcoud container clusters get credentials get-credentials multi-cluster
+  - gcloud container clusters get credentials get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t JTangs/react-test -f ./client/Dockerfile.dev ./client
 
