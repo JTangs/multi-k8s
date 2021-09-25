@@ -1,3 +1,5 @@
+#!/bin/bash
+
 docker build -t jntango/multi-client:latest -t jntango/multi-client:$SHA -f ./client/Dockerfile ./client
 docker build -t jntango/multi-server:latest -t jntango/multi-server:$SHA -f ./server/Dockerfile ./server
 docker build -t jntango/multi-worker:latest -t jntango/multi-worker:$SHA -f ./worker/Dockerfile ./worker
