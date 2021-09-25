@@ -12,7 +12,7 @@ docker push jntango/multi-client:$SHA
 docker push jntango/multi-server:$SHA
 docker push jntango/multi-worker:$SHA
 
-kubebctl apply -f ./k8s
-kubebctl set image deployments/server-deployment server=jntango/multi-server:$SHA
-kubebctl set image deployments/client-deployment server=jntango/multi-client:$SHA
-kubebctl set image deployments/worker-deployment server=jntango/multi-worker:$SHA
+kubectl apply -f ./k8s
+kubectl set image deployments/server-deployment server=jntango/multi-server:$SHA
+kubectl set image deployments/client-deployment server=jntango/multi-client:$SHA
+kubectl set image deployments/worker-deployment server=jntango/multi-worker:$SHA
